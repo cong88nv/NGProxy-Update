@@ -4,12 +4,11 @@
 
 def check_signal():
     """
-    Just run python interpreter to catches the signal
+    Do nothing, just handle os signal
     """
     return True
 
 
-# VENDOR ID - MODEL ID - IFACE
 VENDOR_MODEL_IFACE = {
     # ZTE
     '19d2': {
