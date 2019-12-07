@@ -71,10 +71,9 @@
             <th></th>
             <th>Device Serial</th>
             <th>IMEI</th>
-            <th>Local</th>
-            <th>Remote</th>
             <th>Last Modified</th>
-            <th>Port</th>
+            <th>Public IP</th>
+            <th>Proxy (IP:PORT)</th>
             <th>Status</th>
           </thead>
           <tbody>
@@ -89,15 +88,43 @@
         <div class="mt-3">
           <p style=" font-weight: bold; ">System</p>
           <ul>
-            <li>Notification: <span id="system-notification"></span> </li>
             <li>Version: <span id="system-version"></span> </li>
             <li>IP Address: <span id="system-ipaddr"></span> </li>
+            <li>Notification: <span id="system-notification"></span> </li>
           </ul>
         </div>
         <button id="notify-dismiss" class="btn btn-outline-success mt-3" style=" max-width: max-content; " type="button"
           name="apply">Dismiss</button>
         <hr>
         <label for="system-user" style=" font-weight: bold; ">Configurations</label>
+        <div>
+          <ul>
+            <li>API - Reset proxy: <code>GET /proxy_reset?p=xxxx </code>
+              <ul>
+                <i>
+                  <li>Desc: Reset specified proxy (by port number) to obtain a new IP </li>
+                  <li>Examp: GET /proxy_reset?p=8000 </li>
+                </i>
+              </ul>
+            </li>
+            <li>API - Check proxy: <code>GET /proxy_status?p=xxxx </code>
+              <ul>
+                <i>
+                  <li>Desc: Get status the specified proxy </li>
+                  <li>Examp: GET /proxy_status?p=8000 </li>
+                </i>
+              </ul>
+            </li>
+            <li>Auto reset:
+              <ul>
+                <i>
+                  <li>0: Disable (default) </li>
+                  <li>Other (x): Auto reset which modem has run for x minutes </li>
+                </i>
+              </ul>
+            </li>
+          </ul>
+        </div>
         <div class="input-group mt-3" style=" max-width: max-content; ">
           <div class="input-group-prepend">
             <span class="input-group-text">USERNAME</span>
@@ -118,7 +145,7 @@
 
         <div class="input-group mt-3" style=" max-width: max-content; ">
           <div class="input-group-prepend">
-            <span class="input-group-text">AUTO RESET (by minutes)</span>
+            <span class="input-group-text">AUTO RESET</span>
           </div>
           <input id="reset-time" type="text" class="form-control" placeholder="by minutes" aria-label="Input reset time"
             aria-describedby="basic-addon2">
@@ -162,15 +189,14 @@
         else {
           color = "orangered"
         }
-        html = '<tr class="text-left" style="background-color: ' + color + ';">' +
-          '<td>' + i + '</td>' +
+        html = '<tr class="text-left" >' +
+          '<td>' + (i + 1) + '</td>' +
           '<td>' + result[i].serial + '</td>' +
           '<td>' + result[i].imei + '</td>' +
-          '<td>' + result[i].ppp_local + '</td>' +
-          '<td>' + result[i].ppp_remote + '</td>' +
-          '<td>' + result[i].time_stamp + '</td>' +
-          '<td>' + result[i].port + '</td>' +
-          '<td>' + result[i].status + '</td>' +
+          '<td>' + result[i].last_modified + '</td>' +
+          '<td>' + result[i].public_ip + '</td>' +
+          '<td>' + result[i].proxy + '</td>' +
+          '<td style="background-color: ' + color + ';">' + result[i].status + '</td>' +
           '</tr>'
         $('#tbl_dashboard tbody').append(html);
       }
@@ -195,8 +221,20 @@
       $('#system-user').val(result.user);
       $('#system-password').val(result.passwd);
       $('#reset-time').val(result.reset_time);
-      $('#system-notification').text(result.notification);
-      $('#system-ipaddr').text(result.ipaddr);
+
+      notifies = '<ul>'
+      for (i = 0; i < result.notification.length; i++) {
+        notifies += '<li>' + result.notification[i] + '</li>'
+      }
+      notifies += '</ul>'
+      $('#system-notification').append(notifies);
+
+      ipaddrs = '<ul>'
+      for (i = 0; i < result.ipaddr.length; i++) {
+        ipaddrs += '<li>' + result.ipaddr[i] + '</li>'
+      }
+      ipaddrs += '</ul>'
+      $('#system-ipaddr').append(ipaddrs);
     },
     error: function (xhr, status) {
       console.log("request_failed: " + status);

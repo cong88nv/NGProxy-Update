@@ -1,13 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __future__ import print_function
-
 import argparse
 import sys
 
 from core_ext import debug, main
-
 
 parser = argparse.ArgumentParser(
     description='NGProxy - NextGen Proxy')
