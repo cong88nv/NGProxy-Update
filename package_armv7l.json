@@ -1,0 +1,41 @@
+{
+    "version": "1.5",
+    "package": [
+        {
+            "name": "core",
+            "download_url": "https://raw.githubusercontent.com/binluv1905/NGProxy-Update/master/core.so",
+            "install_path": "core.so",
+            "sha256": "32FD1AD75447D764AEBDC987F3C354CAACA84CBA73E49D06979BFAC1BDFE3F32"
+        },
+        {
+            "name": "core_ext",
+            "download_url": "https://raw.githubusercontent.com/binluv1905/NGProxy-Update/master/core_ext.so",
+            "install_path": "core_ext.so",
+            "sha256": "9AE7D4660206178D1C095E5348DB3EFFA2BD5D851DB9A6E1572AFCA7F1F01971"
+        },
+        {
+            "name": "core_web",
+            "download_url": "https://raw.githubusercontent.com/binluv1905/NGProxy-Update/master/core_web.so",
+            "install_path": "core_web.so",
+            "sha256": "0AEDD4B263F84E8B0DA59DEEDE5E95A4E07920DD7E985B7C18F92051BB1DAD29"
+        },
+        {
+            "name": "run",
+            "download_url": "https://raw.githubusercontent.com/binluv1905/NGProxy-Update/master/run.py",
+            "install_path": "run.py",
+            "sha256": "19BF981E622639C79A329FE95A2964E9C52FB4AEDCBA9B266806AFA029843F9A"
+        },
+        {
+            "name": "index",
+            "download_url": "https://raw.githubusercontent.com/binluv1905/NGProxy-Update/master/index.html",
+            "install_path": "templates/index.html",
+            "sha256": "88C66545C6230050754D824605DC15C74FBA5F3629A0924230B923588D155152"
+        },
+        {
+            "name": "devices",
+            "download_url": "https://raw.githubusercontent.com/binluv1905/NGProxy-Update/master/devices.py",
+            "install_path": "devices.py",
+            "sha256": "C80726C7D6115BBED8F6DE5656CDF5128EB33CD45F5C25192FD7E836995918C1"
+        }
+    ]
+}
